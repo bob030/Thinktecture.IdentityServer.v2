@@ -116,7 +116,7 @@ namespace Thinktecture.IdentityServer.Protocols.OAuth2
                 return View("Error");
             }
 
-            // validate redirect uri
+            // validate redirect_uri
             /*
             if (string.IsNullOrEmpty(request.redirect_uri) || !string.Equals(request.redirect_uri, client.RedirectUri.AbsoluteUri, StringComparison.OrdinalIgnoreCase))
             {
