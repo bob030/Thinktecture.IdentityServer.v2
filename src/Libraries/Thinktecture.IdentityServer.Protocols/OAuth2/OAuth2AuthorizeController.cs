@@ -117,11 +117,13 @@ namespace Thinktecture.IdentityServer.Protocols.OAuth2
             }
 
             // validate redirect uri
+            /*
             if (string.IsNullOrEmpty(request.redirect_uri) || !string.Equals(request.redirect_uri, client.RedirectUri.AbsoluteUri, StringComparison.OrdinalIgnoreCase))
             {
                 ViewBag.Message = "The redirect_uri in the request: " + request.redirect_uri + " did not match a registered redirect URI.";
                 return View("Error");
             }
+            */
 
             // check response type (only code and token are supported)
             if (!request.response_type.Equals(OAuth2Constants.ResponseTypes.Token, StringComparison.Ordinal) &&
@@ -179,9 +181,9 @@ namespace Thinktecture.IdentityServer.Protocols.OAuth2
             {
                 tokenString = string.Format("{0}&state={1}", tokenString, request.state);
             }
-
+            //TODO: fix open redirect
             var redirectString = string.Format("{0}?{1}",
-                        client.RedirectUri.AbsoluteUri,
+                        request.redirect_uri,
                         tokenString);
 
             return Redirect(redirectString);
